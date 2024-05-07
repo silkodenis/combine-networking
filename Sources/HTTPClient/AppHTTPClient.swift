@@ -34,7 +34,7 @@ public final class AppHTTPClient: HTTPClient {
     let decoder: JSONDecoder
     let session: HTTPSession
     
-    init(jsonDecoder: JSONDecoder, session: HTTPSession) {
+    public init(jsonDecoder: JSONDecoder, session: HTTPSession) {
         self.decoder = jsonDecoder
         self.session = session
     }

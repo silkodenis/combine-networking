@@ -20,7 +20,7 @@ import Combine
 public final class HTTPRequestBuilder<T: HTTPEndpoint> {
     private let jsonEncoder: JSONEncoder
     
-    internal init(jsonEncoder: JSONEncoder) {
+    public init(jsonEncoder: JSONEncoder) {
         self.jsonEncoder = jsonEncoder
     }
 
