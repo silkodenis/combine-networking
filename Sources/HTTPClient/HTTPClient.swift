@@ -17,6 +17,6 @@
 import Foundation
 import Combine
 
-public protocol HTTPClient {
+internal protocol HTTPClient {
     func execute<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error>
 }
