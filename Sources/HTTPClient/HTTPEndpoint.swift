@@ -16,7 +16,7 @@
 
 import Foundation
 
-enum HTTPMethod: String {
+public enum HTTPMethod: String {
     case get = "GET"
     case put = "PUT"
     case post = "POST"
@@ -24,7 +24,7 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-protocol HTTPEndpoint {
+public protocol HTTPEndpoint {
     var baseURL: URL { get }
     var path: String { get }
     var method: HTTPMethod { get }

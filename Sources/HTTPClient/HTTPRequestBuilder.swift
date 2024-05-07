@@ -17,7 +17,7 @@
 import Foundation
 import Combine
 
-final class HTTPRequestBuilder<T: HTTPEndpoint> {
+public final class HTTPRequestBuilder<T: HTTPEndpoint> {
     private let jsonEncoder: JSONEncoder
     
     internal init(jsonEncoder: JSONEncoder) {

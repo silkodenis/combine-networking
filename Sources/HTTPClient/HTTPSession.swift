@@ -17,7 +17,7 @@
 import Foundation
 import Combine
 
-protocol HTTPSession {
+public protocol HTTPSession {
     typealias HTTPResponse = URLSession.DataTaskPublisher.Output
     func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError>
 }

@@ -17,7 +17,7 @@
 import Foundation
 import Combine
 
-enum HTTPClientError: Error {
+public enum HTTPClientError: Error {
     case invalidResponse(Details)
     case decodingError(Error)
     case networkError(Error)
@@ -30,7 +30,7 @@ enum HTTPClientError: Error {
     }
 }
 
-final class AppHTTPClient: HTTPClient {
+public final class AppHTTPClient: HTTPClient {
     let decoder: JSONDecoder
     let session: HTTPSession
     
