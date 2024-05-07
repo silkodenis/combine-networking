@@ -23,7 +23,7 @@ public protocol HTTPSession {
 }
 
 extension URLSession: HTTPSession {
-    func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError> {
+    public func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError> {
         return dataTaskPublisher(for: request).eraseToAnyPublisher()
     }
 }

@@ -22,7 +22,7 @@ public enum HTTPClientError: Error {
     case decodingError(Error)
     case networkError(Error)
     
-    struct Details {
+    public struct Details {
         let statusCode: Int
         let url: URL?
         let description: String?
@@ -39,7 +39,7 @@ public final class AppHTTPClient: HTTPClient {
         self.session = session
     }
     
-    func execute<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+    public func execute<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         return session
             .dataTask(for: request)
             .tryMap { data, response in
