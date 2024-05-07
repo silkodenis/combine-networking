@@ -6,6 +6,7 @@
 
 import XCTest
 import Combine
+import HTTPClient
 
 final class HTTPRequestBuilderTests: XCTestCase {
     var sut: HTTPRequestBuilder<MockEndpoint>!

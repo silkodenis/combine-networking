@@ -6,6 +6,7 @@
 
 import XCTest
 import Combine
+import HTTPClient
 
 final class AppHTTPClientTests: XCTestCase {
     
