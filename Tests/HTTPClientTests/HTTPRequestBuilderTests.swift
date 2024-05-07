@@ -133,7 +133,7 @@ final class HTTPRequestBuilderTests: XCTestCase {
             let name: String
         }
 
-        let endpoint = MockEndpoint(_method: .post)
+        let endpoint = MockEndpoint()
         let data = MockData(name: "Test")
 
         sut.request(endpoint, with: data)
@@ -170,7 +170,7 @@ final class HTTPRequestBuilderTests: XCTestCase {
             }
         }
 
-        let endpoint = MockEndpoint(_method: .post)
+        let endpoint = MockEndpoint()
         let data = UnencodableMockData()
 
         sut.request(endpoint, with: data)
