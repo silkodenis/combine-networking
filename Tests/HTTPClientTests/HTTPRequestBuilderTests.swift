@@ -191,7 +191,7 @@ final class HTTPRequestBuilderTests: XCTestCase {
 
 //MARK: - MockEndpoint
 
-extension RequestBuilderTests {
+extension HTTPRequestBuilderTests {
     
     struct MockEndpoint: HTTPEndpoint {
         var _method: HTTPMethod = .get

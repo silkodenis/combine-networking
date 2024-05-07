@@ -23,10 +23,10 @@ public enum HTTPClientError: Error {
     case networkError(Error)
     
     public struct Details {
-        let statusCode: Int
-        let url: URL?
-        let description: String?
-        let headers: [String: String]?
+        public let statusCode: Int
+        public let url: URL?
+        public let description: String?
+        public let headers: [String: String]?
     }
 }
 
