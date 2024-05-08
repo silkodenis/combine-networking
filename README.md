@@ -10,6 +10,7 @@ CombineNetworking is a robust and flexible HTTP networking library for Swift, de
 - **Flexible HTTP Request Configuration**: Use enums to define various network operations, simplifying the configuration of different HTTP requests.
 - **Declarative Networking**: Clearly and concisely configure network operations using Swift enums and protocols.
 - **Combine Integration**: Take full advantage of Swift's Combine framework for managing asynchronous network requests and handling responses.
+- **Mockable HTTP Sessions**: Provides the ability to mock HTTP sessions, which is crucial for unit testing and ensuring that your application behaves as expected under various network conditions without relying on live network calls.
 
 ## Installation
 
