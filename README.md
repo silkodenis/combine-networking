@@ -3,7 +3,7 @@
 
 # Combine Networking
 
-CombineNetworking is a robust and flexible HTTP networking library for Swift, designed to leverage the Combine framework for handling network requests in a declarative way. This package simplifies the process of making HTTP requests, decoding responses, and handling errors.
+CombineNetworking is a robust and flexible HTTP networking package for Swift, designed to leverage the Combine framework for handling network requests in a declarative way. This package simplifies the process of making HTTP requests, decoding responses, and handling errors.
 
 ## Core Features
 
