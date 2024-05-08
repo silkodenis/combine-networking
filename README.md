@@ -106,6 +106,20 @@ func fetchUser(id: Int) -> AnyPublisher<UserDataDTO, Error> {
 
 Replace `UserDataDTO` with the appropriate data model expected from the API. Ensure that this model conforms to the `Codable` protocol, which enables it to be easily decoded from JSON or encoded to JSON, depending on your needs.
 
+### Mocking HTTPSession for Testing
+You can create a mock session that simulates network responses for testing. This approach is beneficial for unit tests where you want to control the inputs and outputs strictly:
+
+```swift
+struct MockSession: HTTPSession {
+    func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError> {
+        return Fail(error: URLError(.notConnectedToInternet)).eraseToAnyPublisher()
+    }
+}
+
+// Example of using a mock session:
+let mock = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
+let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
+```
 
 
 
