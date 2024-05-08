@@ -49,7 +49,7 @@ Here’s how to use CombineNetworking in your project:
 First, define your endpoints using the HTTPEndpoint protocol:
 
 ```swift
-public enum Endpoint {
+enum Endpoint {
     case createUser
     case fetchUser(id: Int)
     case updateUser(id: Int)
