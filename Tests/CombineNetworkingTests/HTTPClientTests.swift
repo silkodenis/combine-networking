@@ -10,7 +10,7 @@ import Combine
 import CombineNetworking
 
 final class HTTPClientTests: XCTestCase {
-    
+   
     func testInvalidHTTPResponseStatus() throws {
         struct MockSession: HTTPSession {
             func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError> {

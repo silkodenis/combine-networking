@@ -33,10 +33,13 @@ public enum HTTPClientError: Error {
     public struct Details {
         /// The HTTP status code of the response.
         public let statusCode: Int
+        
         /// The URL of the request that generated the response.
         public let url: URL?
+        
         /// A human-readable description of the response.
         public let description: String?
+        
         /// The headers returned with the response.
         public let headers: [String: String]?
     }
@@ -46,6 +49,7 @@ public enum HTTPClientError: Error {
 public final class HTTPClient {
     /// A JSON decoder to decode the response data.
     let decoder: JSONDecoder
+    
     /// A session conforming to `HTTPSession` for handling requests.
     let session: HTTPSession
     
