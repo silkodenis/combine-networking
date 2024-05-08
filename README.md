@@ -131,5 +131,7 @@ let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 
 </details>
 
+Example Implementation: [MoviesAPI Service](https://github.com/silkodenis/combine-http-client/tree/main/Examples/MoviesAPI)
+
 ## License
 This project is licensed under the [Apache License, Version 2.0](LICENSE).
