@@ -115,9 +115,45 @@ func fetchUser(id: Int) -> AnyPublisher<UserDataDTO, Error> {
 ```
 
 Replace `UserDataDTO` with the appropriate data model expected from the API. Ensure that this model conforms to the `Codable` protocol, which enables it to be easily decoded from JSON or encoded to JSON, depending on your needs.
-
 </details>
 
+
+<details>
+<summary>Error Handling</summary>
+Here's how you might call fetchUser and handle various potential errors:
+  
+```swift
+fetchUser(id: 123)
+    .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+            print("Fetch completed successfully.")
+        case .failure(let error):
+            switch error {
+            case let HTTPClientError.invalidResponse(details):
+                print("Invalid response: Status code \(details.statusCode). Description: \(details.description ?? "No description")")
+            case let HTTPClientError.decodingError(decodingError):
+                print("Decoding error: \(decodingError.localizedDescription)")
+            case let HTTPClientError.networkError(networkError):
+                print("Network error: \(networkError.localizedDescription)")
+            default:
+                print("An unexpected error occurred: \(error.localizedDescription)")
+            }
+        }
+    }, receiveValue: { userData in
+        print("Received user data: \(userData)")
+    })
+    .store(in: &cancellables)
+```
+
+### Understanding the Errors
+- **Invalid Response**: Occurs when the server's response doesn't meet the expected criteria, such as an incorrect status code or malformed headers.
+- **Decoding Error**: Happens if the JSONDecoder cannot decode the response data into the expected UserDataDTO format.
+- **Network Error**: Includes all errors related to connectivity issues, such as timeouts or lack of internet connection.
+This approach ensures that your application can gracefully handle different error scenarios, providing a better user experience by dealing with errors appropriately.
+
+</details>
+  
 <details>
 <summary>Mocking HTTPSession for Testing</summary>
 You can create a mock session that simulates network responses for testing. This approach is beneficial for unit tests where you want to control the inputs and outputs strictly:
