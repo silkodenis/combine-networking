@@ -9,7 +9,7 @@
 import Foundation
 import CombineNetworking
 
-protocol MoviesServiceAPI {
+protocol MoviesAPI {
     func authentication() -> AnyPublisher<TokenDTO, Error>
     func validation(username: String, password: String, token: String) -> AnyPublisher<TokenDTO, Error>
     func session(with token: String) -> AnyPublisher<SessionDTO, Error>
@@ -20,7 +20,7 @@ protocol MoviesServiceAPI {
     func movieDetail(id: Int) -> AnyPublisher<MovieDetailDTO, Error>
 }
 
-class MoviesAPI: MoviesServiceAPI {
+class MoviesAPIService: MoviesAPI {
     typealias Endpoint = MoviesEndpoint
     
     private let client: HTTPClient
