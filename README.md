@@ -111,9 +111,12 @@ extension Endpoint: HTTPEndpoint {
 
 <details>
 <summary>Create and Execute a Request</summary>
-Then, create an HTTPClient instance to execute the request:
-
+    
 ```swift
+struct UserDataDTO: Codable {
+    let name: String
+}
+
 let builder = HTTPRequestBuilder<Endpoint>(jsonEncoder: JSONEncoder())
 let client = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 
