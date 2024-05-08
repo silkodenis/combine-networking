@@ -5,9 +5,8 @@
 
 CombineNetworking is a robust and flexible HTTP networking library for Swift, designed to leverage the Combine framework for handling network requests in a declarative way. This package simplifies the process of making HTTP requests, decoding responses, and handling errors.
 
-## Features
+## Core Features
 
-### Core Features
 - **Flexible HTTP Request Configuration**: Use enums to define various network operations, simplifying the configuration of different HTTP requests.
 - **Declarative Networking**: Clearly and concisely configure network operations using Swift enums and protocols.
 - **Combine Integration**: Take full advantage of Swift's Combine framework for managing asynchronous network requests and handling responses.
@@ -131,7 +130,7 @@ let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 
 </details>
 
-Example Implementation: [MoviesAPI Service](https://github.com/silkodenis/combine-http-client/tree/main/Examples/MoviesAPI)
+Example Implementation [MoviesAPI](https://github.com/silkodenis/combine-http-client/tree/main/Examples/MoviesAPI) Service
 
 ## License
 This project is licensed under the [Apache License, Version 2.0](LICENSE).
