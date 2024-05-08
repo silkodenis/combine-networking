@@ -30,10 +30,11 @@ And then add "CombineNetworking" to your target's dependencies:
 ```
 
 ## Specific Components
-- **HTTPSession Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
-- **HTTPEndpoint Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
-- **HTTPRequestBuilder**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
-- **HTTPClient**: Executes network requests and processes the responses, supporting generic decoding.
+
+- **[HTTPSession](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPSession.swift) Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
+- **[HTTPEndpoint](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPEndpoint.swift) Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
+- **[HTTPRequestBuilder](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPRequestBuilder.swift)**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
+- **[HTTPClient](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Executes network requests and processes the responses, supporting generic decoding.
   
 ## Usage
 Here’s how to use CombineNetworking in your project:
