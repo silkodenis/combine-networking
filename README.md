@@ -186,7 +186,7 @@ let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 </details>
 
 ## Examples
-[MoviesAPI Service](https://github.com/silkodenis/networking/tree/main/Examples/MoviesAPI)
+[MoviesAPI Service](https://github.com/silkodenis/combine-networking/tree/main/Examples/MoviesAPI)
 
 ## Contributing
 
