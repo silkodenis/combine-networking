@@ -1,24 +1,26 @@
 //
-//  AppHTTPClient.swift
+//  HTTPClient.swift
+//  CombineNetworking
 //
 //  Created by Denis Silko on 30.04.2024.
 //
 
 import XCTest
 import Combine
-import HTTPClient
+import CombineNetworking
 
-final class AppHTTPClientTests: XCTestCase {
+final class HTTPClientTests: XCTestCase {
     
     func testInvalidHTTPResponseStatus() throws {
-        struct MockURLSession: HTTPSession {
+        struct MockSession: HTTPSession {
             func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError> {
-                let response = HTTPURLResponse(url: request.url!, statusCode: 404, httpVersion: nil, headerFields: ["Content-Type": "application/json"])!
+                let response = HTTPURLResponse(url: request.url!, statusCode: 404, httpVersion: nil, 
+                                               headerFields: ["Content-Type": "application/json"])!
                 return Result.Publisher((data: Data(), response: response)).eraseToAnyPublisher()
             }
         }
 
-        let sut = AppHTTPClient(jsonDecoder: JSONDecoder(), session: MockURLSession())
+        let sut = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
         let requestURL = URL(string: "https://example.com")!
         let request = URLRequest(url: requestURL)
         let expectation = XCTestExpectation(description: "Invalid response status test")
@@ -49,7 +51,7 @@ final class AppHTTPClientTests: XCTestCase {
     }
 
     func testSuccessfulDataFetch() throws {
-        struct MockData: Codable, Equatable {
+        struct MockResponse: Codable, Equatable {
             let id: Int
             let name: String
         }
@@ -63,9 +65,9 @@ final class AppHTTPClientTests: XCTestCase {
             }
         }
 
-        let mockData = MockData(id: 1, name: "Test")
-        let mockSession = MockSession(responseData: try! JSONEncoder().encode(mockData))
-        let sut = AppHTTPClient(jsonDecoder: JSONDecoder(), session: mockSession)
+        let mockResponse = MockResponse(id: 1, name: "Test")
+        let mockSession = MockSession(responseData: try! JSONEncoder().encode(mockResponse))
+        let sut = HTTPClient(jsonDecoder: JSONDecoder(), session: mockSession)
         let request = URLRequest(url: URL(string: "https://example.com")!)
         let expectation = XCTestExpectation(description: "Successful data fetch")
 
@@ -74,8 +76,8 @@ final class AppHTTPClientTests: XCTestCase {
                 if case .failure = completion {
                     XCTFail("Request failed when success was expected")
                 }
-            }, receiveValue: { (decodedData: MockData) in
-                XCTAssertEqual(decodedData, mockData)
+            }, receiveValue: { (decodedData: MockResponse) in
+                XCTAssertEqual(decodedData, mockResponse)
                 expectation.fulfill()
             })
 
@@ -90,7 +92,7 @@ final class AppHTTPClientTests: XCTestCase {
             }
         }
 
-        let sut = AppHTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
+        let sut = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
         let request = URLRequest(url: URL(string: "https://example.com")!)
         let expectation = XCTestExpectation(description: "Network error handling test")
 
@@ -121,7 +123,7 @@ final class AppHTTPClientTests: XCTestCase {
             }
         }
 
-        let sut = AppHTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
+        let sut = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
         let request = URLRequest(url: URL(string: "https://example.com")!)
         let expectation = XCTestExpectation(description: "Invalid JSON decoding test")
 
@@ -140,27 +142,36 @@ final class AppHTTPClientTests: XCTestCase {
         cancellable.cancel()
     }
     
-    func testEmptyResponseBody() throws {
+    func testDecodingErrorHandling() throws {
         struct MockSession: HTTPSession {
             func dataTask(for request: URLRequest) -> AnyPublisher<HTTPResponse, URLError> {
+                let invalidJSONData = "{".data(using: .utf8)!
                 let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-                return Result.Publisher((data: Data(), response: response)).eraseToAnyPublisher()
+                return Just((data: invalidJSONData, response: response))
+                    .setFailureType(to: URLError.self)
+                    .eraseToAnyPublisher()
             }
         }
 
-        let sut = AppHTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
+        let sut = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
         let request = URLRequest(url: URL(string: "https://example.com")!)
-        let expectation = XCTestExpectation(description: "Empty response body test")
+        let expectation = XCTestExpectation(description: "Decoding error handling test")
 
         let cancellable = sut.execute(request)
             .sink(receiveCompletion: { completion in
-                if case .failure = completion {
+                switch completion {
+                case .finished:
+                    XCTFail("Expected decoding error due to invalid JSON, but got success")
+                case .failure(let error):
+                    guard case let HTTPClientError.decodingError(decodingError) = error else {
+                        XCTFail("Expected HTTPClientError.decodingError, received \(error)")
+                        return
+                    }
+                    XCTAssertTrue(decodingError is DecodingError, "Expected .decodingError received \(type(of: decodingError))")
                     expectation.fulfill()
-                } else {
-                    XCTFail("Expected failure due to empty response body, but got success")
                 }
-            }, receiveValue: { (_: String) in
-                XCTFail("Expected decoding failure due to empty body, but received data")
+            }, receiveValue: { (_: Data) in
+                XCTFail("Expected no data due to decoding error, but received data")
             })
 
         wait(for: [expectation], timeout: 5.0)

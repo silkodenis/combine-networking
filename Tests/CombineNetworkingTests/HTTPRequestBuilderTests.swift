@@ -1,12 +1,13 @@
 //
-//  HTTPRequestBuilder.swift
+//  HTTPRequestBuilderTests.swift
+//  CombineNetworking
 //
 //  Created by Denis Silko on 29.04.2024.
 //
 
 import XCTest
 import Combine
-import HTTPClient
+import CombineNetworking
 
 final class HTTPRequestBuilderTests: XCTestCase {
     var sut: HTTPRequestBuilder<MockEndpoint>!
@@ -133,7 +134,7 @@ final class HTTPRequestBuilderTests: XCTestCase {
             let name: String
         }
 
-        let endpoint = MockEndpoint()
+        let endpoint = MockEndpoint(_method: .post)
         let data = MockData(name: "Test")
 
         sut.request(endpoint, with: data)
@@ -170,7 +171,7 @@ final class HTTPRequestBuilderTests: XCTestCase {
             }
         }
 
-        let endpoint = MockEndpoint()
+        let endpoint = MockEndpoint(_method: .post)
         let data = UnencodableMockData()
 
         sut.request(endpoint, with: data)

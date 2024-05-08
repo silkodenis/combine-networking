@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "HTTPClient",
+    name: "CombineNetworking",
     platforms: [
             .macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)
         ],
     products: [
         .library(
-            name: "HTTPClient",
-            targets: ["HTTPClient"]),
+            name: "CombineNetworking",
+            targets: ["CombineNetworking"]),
     ],
     targets: [
         .target(
-            name: "HTTPClient"),
+            name: "CombineNetworking"),
         .testTarget(
-            name: "HTTPClientTests",
-            dependencies: ["HTTPClient"]),
+            name: "CombineNetworkingTests",
+            dependencies: ["CombineNetworking"]),
     ]
 )
