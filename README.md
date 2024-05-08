@@ -38,7 +38,9 @@ And then add "CombineNetworking" to your target's dependencies:
 ## Usage
 Here’s how to use CombineNetworking in your project:
 
-### Define an Endpoint
+<details>
+<summary>Define an Endpoint</summary>
+    
 First, define your endpoints using the HTTPEndpoint protocol:
 
 ```swift
@@ -90,8 +92,10 @@ extension Endpoint: HTTPEndpoint {
     }
 }
 ```
+</details>
 
-### Create and Execute a Request
+<details>
+<summary>Create and Execute a Request</summary>
 Then, create an HTTPClient instance to execute the request:
 
 ```swift
@@ -107,7 +111,10 @@ func fetchUser(id: Int) -> AnyPublisher<UserDataDTO, Error> {
 
 Replace `UserDataDTO` with the appropriate data model expected from the API. Ensure that this model conforms to the `Codable` protocol, which enables it to be easily decoded from JSON or encoded to JSON, depending on your needs.
 
-### Mocking HTTPSession for Testing
+</details>
+
+<details>
+<summary>Mocking HTTPSession for Testing</summary>
 You can create a mock session that simulates network responses for testing. This approach is beneficial for unit tests where you want to control the inputs and outputs strictly:
 
 ```swift
@@ -121,6 +128,8 @@ struct MockSession: HTTPSession {
 let mock = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
 let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 ```
+
+</details>
 
 ## License
 This project is licensed under the [Apache License, Version 2.0](LICENSE).
