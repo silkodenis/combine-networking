@@ -1,0 +1,101 @@
+//
+//  MoviesService.swift
+//  MoviesAPI
+//
+//  Created by Denis Silko on 09.04.2024.
+//  Copyright © 2024 Denis Silko. All rights reserved.
+//
+
+import Foundation
+import CombineNetworking
+
+protocol MoviesServiceAPI {
+    func authentication() -> AnyPublisher<TokenDTO, Error>
+    func validation(username: String, password: String, token: String) -> AnyPublisher<TokenDTO, Error>
+    func session(with token: String) -> AnyPublisher<SessionDTO, Error>
+    func guestSession() -> AnyPublisher<SessionDTO, Error>
+    func deleteSession(with id: String) -> AnyPublisher<SessionDTO, Error>
+    func configuration() -> AnyPublisher<ConfigurationDTO, Error>
+    func trending() -> AnyPublisher<PageDTO<MovieDTO>, Error>
+    func movieDetail(id: Int) -> AnyPublisher<MovieDetailDTO, Error>
+}
+
+class MoviesAPI: MoviesServiceAPI {
+    typealias Endpoint = MoviesEndpoint
+    
+    private let client: HTTPClient
+    private let builder: HTTPRequestBuilder<Endpoint>
+    
+    init(httpClient: HTTPClient, requestBuilder: HTTPRequestBuilder<Endpoint>) {
+        self.client = httpClient
+        self.builder = requestBuilder
+    }
+    
+    func authentication() -> AnyPublisher<TokenDTO, Error> {
+        builder.request(.authentication)
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+    
+    func validation(username: String, password: String, token: String) -> AnyPublisher<TokenDTO, Error> {
+        builder.request(.validation, with: Login(username: username,
+                                                 password: password,
+                                            request_token: token))
+        .flatMap(client.execute)
+        .eraseToAnyPublisher()
+    }
+    
+    func session(with token: String) -> AnyPublisher<SessionDTO, Error> {
+        builder.request(.session, with: Token(request_token: token))
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+    
+    func guestSession() -> AnyPublisher<SessionDTO, Error> {
+        builder.request(.guestSession)
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+    
+    func deleteSession(with id: String) -> AnyPublisher<SessionDTO, Error> {
+        builder.request(.deleteSession, with: Session(session_id: id))
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+    
+    func configuration() -> AnyPublisher<ConfigurationDTO, Error> {
+        builder.request(.configuration)
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+    
+    func trending() -> AnyPublisher<PageDTO<MovieDTO>, Error> {
+        builder.request(.trending(.week))
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+    
+    func movieDetail(id: Int) -> AnyPublisher<MovieDetailDTO, Error> {
+        builder.request(.movieDetail(id: id))
+            .flatMap(client.execute)
+            .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - fileprivate inner types
+
+fileprivate extension MoviesService {
+    struct Login: Codable {
+        let username: String
+        let password: String
+        let request_token: String
+    }
+    
+    struct Token: Codable {
+        let request_token: String
+    }
+    
+    struct Session: Codable {
+        let session_id: String
+    }
+}
