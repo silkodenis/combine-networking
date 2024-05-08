@@ -12,12 +12,6 @@ CombineNetworking is a robust and flexible HTTP networking library for Swift, de
 - **Declarative Networking**: Clearly and concisely configure network operations using Swift enums and protocols.
 - **Combine Integration**: Take full advantage of Swift's Combine framework for managing asynchronous network requests and handling responses.
 
-### Specific Components
-- **HTTPSession Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
-- **HTTPEndpoint Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
-- **HTTPRequestBuilder**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
-- **HTTPClient**: Executes network requests and processes the responses, supporting generic decoding.
-
 ## Installation
 
 To integrate CombineNetworking into your Xcode project using Swift Package Manager, add the following as a dependency to your `Package.swift`:
@@ -34,6 +28,13 @@ And then add "CombineNetworking" to your target's dependencies:
     dependencies: ["CombineNetworking"]
 )
 ```
+
+## Specific Components
+- **HTTPSession Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
+- **HTTPEndpoint Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
+- **HTTPRequestBuilder**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
+- **HTTPClient**: Executes network requests and processes the responses, supporting generic decoding.
+  
 ## Usage
 Here’s how to use CombineNetworking in your project:
 
@@ -121,5 +122,5 @@ let mock = HTTPClient(jsonDecoder: JSONDecoder(), session: MockSession())
 let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 ```
 
-
-
+## License
+This project is licensed under the [Apache License, Version 2.0](LICENSE).
