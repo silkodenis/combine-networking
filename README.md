@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/github/license/silkodenis/combine-networking.svg)](https://github.com/silkodenis/combine-networking/blob/main/LICENSE)
 ![swift](https://github.com/silkodenis/combine-networking/actions/workflows/swift.yml/badge.svg?branch=main)
 
-# CombineNetworking
+# Combine Networking
 
 CombineNetworking is a robust and flexible HTTP networking library for Swift, designed to leverage the Combine framework for handling network requests in a declarative way. This package simplifies the process of making HTTP requests, decoding responses, and handling errors.
 
