@@ -94,8 +94,8 @@ extension Endpoint: HTTPEndpoint {
 Then, create an HTTPClient instance to execute the request:
 
 ```swift
-let client = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 let builder = HTTPRequestBuilder<Endpoint>(jsonEncoder: JSONEncoder())
+let client = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 
 func fetchUser(id: Int) -> AnyPublisher<UserDataDTO, Error> {
         builder.request(.fetchUser(id: id))
@@ -103,6 +103,8 @@ func fetchUser(id: Int) -> AnyPublisher<UserDataDTO, Error> {
             .eraseToAnyPublisher()
 }
 ```
+
+Replace `UserDataDTO` with the appropriate data model expected from the API. Ensure that this model conforms to the `Codable` protocol, which enables it to be easily decoded from JSON or encoded to JSON, depending on your needs.
 
 
 
