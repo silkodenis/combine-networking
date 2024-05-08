@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 import CombineNetworking
 
 protocol MoviesAPI {
@@ -84,7 +85,7 @@ class MoviesAPIService: MoviesAPI {
 
 // MARK: - fileprivate inner types
 
-fileprivate extension MoviesService {
+fileprivate extension MoviesAPIService {
     struct Login: Codable {
         let username: String
         let password: String
