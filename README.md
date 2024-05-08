@@ -1,5 +1,5 @@
-[![License](https://img.shields.io/github/license/silkodenis/combine-http-client.svg)](https://github.com/silkodenis/combine-http-client/blob/main/LICENSE)
-![swift](https://github.com/silkodenis/combine-http-client/actions/workflows/swift.yml/badge.svg?branch=main)
+[![License](https://img.shields.io/github/license/silkodenis/combine-networking.svg)](https://github.com/silkodenis/combine-networking/blob/main/LICENSE)
+![swift](https://github.com/silkodenis/combine-networking/actions/workflows/swift.yml/badge.svg?branch=main)
 
 # CombineNetworking
 
@@ -41,11 +41,11 @@ And then add "CombineNetworking" to your target's dependencies:
 
 ## Components
 
-- **[HTTPSession](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPSession.swift) Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
-- **[HTTPEndpoint](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPEndpoint.swift) Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
-- **[HTTPRequestBuilder](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPRequestBuilder.swift)**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
-- **[HTTPClient](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Executes network requests and processes the responses, supporting generic decoding.
-- **[HTTPClientError](https://github.com/silkodenis/combine-http-client/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Manages error states that can occur during the execution of HTTP requests. This enumeration helps in categorizing and handling different types of errors, such as:
+- **[HTTPSession](https://github.com/silkodenis/combine-networking/blob/main/Sources/CombineNetworking/HTTPSession.swift) Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
+- **[HTTPEndpoint](https://github.com/silkodenis/combine-networking/blob/main/Sources/CombineNetworking/HTTPEndpoint.swift) Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
+- **[HTTPRequestBuilder](https://github.com/silkodenis/combine-networking/blob/main/Sources/CombineNetworking/HTTPRequestBuilder.swift)**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
+- **[HTTPClient](https://github.com/silkodenis/combine-networking/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Executes network requests and processes the responses, supporting generic decoding.
+- **[HTTPClientError](https://github.com/silkodenis/combine-networking/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Manages error states that can occur during the execution of HTTP requests. This enumeration helps in categorizing and handling different types of errors, such as:
   - **invalidResponse**: Indicates that the HTTP response was not valid or did not meet expected criteria, containing details about the response.
   - **decodingError**: Occurs when there is a failure in decoding the response data, providing the underlying error for more context.
   - **networkError**: Represents errors related to network connectivity issues or problems with the network request itself.
@@ -183,7 +183,7 @@ let real = HTTPClient(jsonDecoder: JSONDecoder(), session: URLSession.shared)
 </details>
 
 ## Examples
-[MoviesAPI Service](https://github.com/silkodenis/combine-http-client/tree/main/Examples/MoviesAPI)
+[MoviesAPI Service](https://github.com/silkodenis/networking/tree/main/Examples/MoviesAPI)
 
 ## Contributing
 
