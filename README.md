@@ -5,6 +5,15 @@
 
 CombineNetworking is a robust and flexible HTTP networking library for Swift, designed to leverage the Combine framework for handling network requests in a declarative way. This package simplifies the process of making HTTP requests, decoding responses, and handling errors.
 
+## Requirements
+
+- **Swift 5.1** or later
+- **Xcode 11** or later
+- **iOS**: iOS 13.0 or later
+- **macOS**: macOS 10.15 or later
+- **watchOS**: watchOS 6.0 or later
+- **tvOS**: tvOS 13.0 or later
+
 ## Core Features
 
 - **Flexible HTTP Request Configuration**: Use enums to define various network operations, simplifying the configuration of different HTTP requests.
