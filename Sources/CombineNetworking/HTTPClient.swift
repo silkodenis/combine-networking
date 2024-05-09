@@ -48,10 +48,10 @@ public enum HTTPClientError: Error {
 /// A client for executing HTTP requests and decoding responses.
 public final class HTTPClient {
     /// A JSON decoder to decode the response data.
-    let decoder: JSONDecoder
+    private let decoder: JSONDecoder
     
     /// A session conforming to `HTTPSession` for handling requests.
-    let session: HTTPSession
+    private let session: HTTPSession
     
     /// Initializes a new HTTPClient with the given JSON decoder and session.
     /// - Parameters:
