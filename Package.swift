@@ -13,9 +13,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CombineNetworking"),
+            name: "CombineNetworking",
+            dependencies: [],
+            path: "Sources",
+            exclude: ["../Examples"]),
         .testTarget(
             name: "CombineNetworkingTests",
-            dependencies: ["CombineNetworking"]),
+            dependencies: ["CombineNetworking"],
+            path: "Tests")
     ]
 )
