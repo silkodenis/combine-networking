@@ -24,20 +24,37 @@ CombineNetworking is a robust and flexible HTTP networking package for Swift, de
 - **watchOS**: watchOS 6.0+
 - **tvOS**: tvOS 13.0+
 
-To integrate CombineNetworking into your Xcode project using Swift Package Manager, add the following as a dependency to your `Package.swift`:
+### Using Swift Package Manager from Xcode
+To add CombineNetworking to your project in Xcode:
+1. Open your project in Xcode.
+2. Navigate to `File` → `Swift Packages` → `Add Package Dependency...`.
+3. Paste the repository URL: `https://github.com/silkodenis/swift-combine-networking.git`.
+4. Choose the version you want to use (you can specify a version, a commit, or a branch).
+5. Click `Next` and Xcode will download the package and add it to your project.
+
+### Using Swift Package Manager from the Command Line
+
+If you are managing your Swift packages manually or through a package.swift file, add CombineNetworking as a dependency:
+
+1. Open your `Package.swift`.
+2. Add `CombineNetworking` to your package's dependencies:
 
 ```swift
-.package(url: "https://github.com/silkodenis/swift-combine-networking.git", from: "1.0.0")
-```
-
-And then add "CombineNetworking" to your target's dependencies:
-
-```swift
-.target(
-    name: "YourTarget",
-    dependencies: ["CombineNetworking"]
+let package = Package(
+    name: "YourProjectName",
+    dependencies: [
+        .package(url: "https://github.com/silkodenis/swift-combine-networking.git", .upToNextMajor(from: "1.0.0"))
+    ],
+    targets: [
+        .target(
+            name: "YourTargetName",
+            dependencies: ["CombineNetworking"]
+        )
+    ]
 )
 ```
+
+This setup specifies that CombineNetworking should be pulled from the master branch and included in the YourTargetName target of your project.
 
 ## Components
 
