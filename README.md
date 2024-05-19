@@ -27,7 +27,7 @@ CombineNetworking is a robust and flexible HTTP networking package for Swift, de
 To integrate CombineNetworking into your Xcode project using Swift Package Manager, add the following as a dependency to your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/silkodenis/swift-combine-networking.git", from: "1.0.0")
+.package(name: "CombineNetworking", url: "https://github.com/silkodenis/swift-combine-networking.git", from: "1.0.0", path: "CombineNetworking")
 ```
 
 And then add "CombineNetworking" to your target's dependencies:
@@ -41,11 +41,11 @@ And then add "CombineNetworking" to your target's dependencies:
 
 ## Components
 
-- **[HTTPSession](https://github.com/silkodenis/swift-combine-networking/blob/main/Sources/CombineNetworking/HTTPSession.swift) Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
-- **[HTTPEndpoint](https://github.com/silkodenis/swift-combine-networking/blob/main/Sources/CombineNetworking/HTTPEndpoint.swift) Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
-- **[HTTPRequestBuilder](https://github.com/silkodenis/swift-combine-networking/blob/main/Sources/CombineNetworking/HTTPRequestBuilder.swift)**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
-- **[HTTPClient](https://github.com/silkodenis/swift-combine-networking/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Executes network requests and processes the responses, supporting generic decoding.
-- **[HTTPClientError](https://github.com/silkodenis/swift-combine-networking/blob/main/Sources/CombineNetworking/HTTPClient.swift)**: Manages error states that can occur during the execution of HTTP requests. This enumeration helps in categorizing and handling different types of errors, such as:
+- **[HTTPSession](https://github.com/silkodenis/swift-combine-networking/blob/main/CombineNetworking/Sources/CombineNetworking/HTTPSession.swift) Protocol**: Allows for mocking of session behavior in unit tests, making it easier to test network interactions.
+- **[HTTPEndpoint](https://github.com/silkodenis/swift-combine-networking/blob/main/CombineNetworking/Sources/CombineNetworking/HTTPEndpoint.swift) Protocol**: Facilitates the construction of different HTTP requests using a clear and concise interface.
+- **[HTTPRequestBuilder](https://github.com/silkodenis/swift-combine-networking/blob/main/CombineNetworking/Sources/CombineNetworking/HTTPRequestBuilder.swift)**: Provides a declarative API for building URL requests from HTTPEndpoint instances.
+- **[HTTPClient](https://github.com/silkodenis/swift-combine-networking/blob/main/CombineNetworking/Sources/CombineNetworking/HTTPClient.swift)**: Executes network requests and processes the responses, supporting generic decoding.
+- **[HTTPClientError](https://github.com/silkodenis/swift-combine-networking/blob/main/CombineNetworking/Sources/CombineNetworking/HTTPClient.swift)**: Manages error states that can occur during the execution of HTTP requests. This enumeration helps in categorizing and handling different types of errors, such as:
   - **invalidResponse**: Indicates that the HTTP response was not valid or did not meet expected criteria, containing details about the response.
   - **decodingError**: Occurs when there is a failure in decoding the response data, providing the underlying error for more context.
   - **networkError**: Represents errors related to network connectivity issues or problems with the network request itself.

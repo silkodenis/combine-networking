@@ -16,6 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Set up
+      run: cd CombineNetworking
 
     - name: Build
       run: swift build -v

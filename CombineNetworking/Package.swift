@@ -15,8 +15,7 @@ let package = Package(
         .target(
             name: "CombineNetworking",
             dependencies: [],
-            path: "Sources",
-            exclude: ["../Examples"]),
+            path: "Sources"),
         .testTarget(
             name: "CombineNetworkingTests",
             dependencies: ["CombineNetworking"],
